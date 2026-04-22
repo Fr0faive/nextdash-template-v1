@@ -1,4 +1,4 @@
-name: Build with Bun
+name: Next.js Build with Bun
 
 on:
   push:
@@ -22,5 +22,5 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build project
-        # Menggunakan bunx -y untuk otomatis setuju jika ada package yang perlu di-install
-        run: bunx -y webpack --mode production
+        # Ini adalah cara standar Next.js untuk build
+        run: bun run build
