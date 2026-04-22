@@ -49,16 +49,16 @@ export default function ProfileSettingsPage() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 transition-transform group-hover:scale-110 duration-700" />
 
           <div className="flex flex-col md:flex-row items-center gap-8 relative z-10">
-            <AvatarUpload 
-              size="lg" 
+            <AvatarUpload
+              size="lg"
               onChange={(file) => console.log("New avatar:", file)}
               onRemove={() => console.log("Avatar removed")}
             />
 
             <div className="text-center md:text-left space-y-2">
-              <h2 className="text-2xl font-black">Alex Rivera</h2>
+              <h2 className="text-2xl font-black">Faikar</h2>
               <p className="text-muted-foreground">
-                Product Designer & Developer based in Jakarta.
+                Web Developer based in Bandung.
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-2 pt-2">
                 <div className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
@@ -66,7 +66,7 @@ export default function ProfileSettingsPage() {
                 </div>
                 <div className="px-3 py-1 rounded-full bg-accent text-muted-foreground text-xs font-bold uppercase tracking-wider">
                   {" "}
-                  Jakarta, ID
+                  Bandung, ID
                 </div>
               </div>
             </div>
@@ -82,16 +82,16 @@ export default function ProfileSettingsPage() {
                 Personal Information
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input label="First Name" defaultValue="Alex" />
-                <Input label="Last Name" defaultValue="Rivera" />
+                <Input label="First Name" defaultValue="Faikar" />
+                <Input label="Last Name" defaultValue="" />
                 <Input
                   label="Email Address"
-                  defaultValue="alex.rivera@example.com"
+                  defaultValue="faikar@email.com"
                   leftIcon={<Mail className="w-4 h-4" />}
                 />
                 <Input
                   label="Website"
-                  defaultValue="https://alexrivera.com"
+                  defaultValue="https://profile.faikarmocht.dev"
                   leftIcon={<Globe className="w-4 h-4" />}
                 />
               </div>

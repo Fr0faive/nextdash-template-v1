@@ -107,20 +107,16 @@ function SidebarItem({
     <div
       className={cn(
         "group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer",
-        isActive && !hasChildren
-          ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+        isActive
+          ? "bg-primary/10 text-primary"
           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-        isActive && hasChildren && "text-primary bg-primary/5",
         isCollapsed && "h-11 w-11 mx-auto flex items-center justify-center",
       )}
     >
       <Icon
         className={cn(
           "w-5 h-5 shrink-0 transition-colors",
-          isActive && !hasChildren
-            ? "text-primary-foreground"
-            : "group-hover:text-primary",
-          isActive && hasChildren && "text-primary",
+          isActive ? "text-primary" : "group-hover:text-primary",
         )}
       />
       {!isCollapsed && (

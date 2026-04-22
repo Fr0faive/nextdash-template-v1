@@ -8,6 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import { IconButton } from "@/components/ui/icon-button";
 import { Popover } from "@/components/ui/popover";
 import { useSidebar } from "@/components/providers/sidebar-provider";
+import { Avatar } from "@/components/ui/avatar";
+import { 
+  Menu as DropdownMenu, 
+  MenuItem, 
+  MenuLabel, 
+  MenuSeparator 
+} from "@/components/ui/menu";
+import { LogOut } from "lucide-react";
 
 interface HeaderProps {
   // Toggles for built-in components
@@ -64,9 +72,9 @@ export function Header({
         {/* Left Side */}
         <div className="flex items-center gap-4 flex-1">
           <div className="md:hidden">
-            <IconButton 
-              icon={<Menu className="w-5 h-5" />} 
-              variant="ghost" 
+            <IconButton
+              icon={<Menu className="w-5 h-5" />}
+              variant="ghost"
               onClick={toggleMobileSidebar}
               className="text-muted-foreground hover:text-foreground"
             />
@@ -99,7 +107,7 @@ export function Header({
           {showNotifications && (
             <Popover
               side="bottom"
-              align="end"
+              align="center"
               width="w-80"
               trigger={
                 <Badge variant="dot" color="primary">
@@ -167,16 +175,49 @@ export function Header({
           )}
 
           {showUser && (
-            <div className="flex items-center gap-3 pl-2 border-l ml-2">
-              <div className="hidden lg:block text-right">
-                <div className="text-xs font-bold">John Doe</div>
-                <div className="text-[10px] text-muted-foreground">
-                  Administrator
-                </div>
-              </div>
-              <div className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center border-2 border-background shadow-sm hover:ring-2 hover:ring-primary/20 transition-all cursor-pointer">
-                <User className="w-5 h-5 text-muted-foreground" />
-              </div>
+            <div className="flex items-center pl-2 border-l ml-2">
+              <DropdownMenu
+                align="end"
+                trigger={
+                  <div className="flex items-center gap-3 cursor-pointer group">
+                    <div className="hidden lg:block text-right">
+                      <div className="text-xs font-bold group-hover:text-primary transition-colors">
+                        John Doe
+                      </div>
+                      <div className="text-[10px] text-muted-foreground">
+                        Administrator
+                      </div>
+                    </div>
+                    <Avatar
+                      src="https://i.pravatar.cc/150?u=johndoe"
+                      fallback="JD"
+                      size="sm"
+                      className="border-2 border-background shadow-sm group-hover:ring-2 group-hover:ring-primary/20 transition-all"
+                    />
+                  </div>
+                }
+              >
+                <MenuLabel>My Account</MenuLabel>
+                <MenuItem
+                  icon={<User />}
+                  label="Profile"
+                  onClick={() => {}}
+                />
+                <MenuItem
+                  icon={<Settings />}
+                  label="Settings"
+                  onClick={() => setIsSettingsOpen(true)}
+                  rightElement="⌘S"
+                />
+                <MenuSeparator />
+                <MenuItem
+                  icon={<LogOut />}
+                  label="Logout"
+                  variant="destructive"
+                  onClick={() => {}}
+                  rightElement="⌥Q"
+                />
+              </DropdownMenu>
             </div>
           )}
         </div>

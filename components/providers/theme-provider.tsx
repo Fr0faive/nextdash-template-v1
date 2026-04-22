@@ -27,7 +27,7 @@ const ThemeContext = React.createContext<ThemeContextType | undefined>(
   undefined,
 );
 
-import { ToastProvider } from "./toast-provider";
+
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [accent, setAccent] = React.useState<Accent>("blue");
@@ -67,7 +67,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       <ThemeContext.Provider
         value={{ accent, setAccent, toastPosition, setToastPosition }}
       >
-        <ToastProvider position={toastPosition}>{children}</ToastProvider>
+        {children}
       </ThemeContext.Provider>
     </NextThemesProvider>
   );
