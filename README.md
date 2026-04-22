@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 NextDash Premium v1
 
-## Getting Started
+NextDash is a state-of-the-art, high-performance dashboard template built with **Next.js 15**, **React 19**, and **Tailwind CSS 4**. It features a stunning premium aesthetic with glassmorphism effects, dynamic theme-aware components, and a robust architecture designed for scale.
 
-First, run the development server:
+![NextDash Preview](https://raw.githubusercontent.com/shadcn-ui/ui/main/apps/www/public/og.png) *(Replace with actual screenshot)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
+
+- 💎 **Premium Aesthetic**: Modern glassmorphism UI with smooth backdrops and vibrant gradients.
+- 🎨 **Dynamic Theming**: Multi-accent support (Blue, Violet, Rose, Orange, Zinc) with perfect Dark/Light mode synchronization.
+- 📊 **Advanced Charts**: Theme-aware ApexCharts integration with custom premium tooltips and area/bar/donut variants.
+- 🧩 **Unified Components**: Intelligent Select & Autocomplete components with single/multi-select support in a single file.
+- 📱 **Sophisticated Inputs**: Premium Phone Input with country flags and auto-focusing OTP Verification fields.
+- ⚡ **Optimized Performance**: Next.js 15 App Router, React Server Components (RSC), and dynamic imports for heavy libraries.
+- 🏗️ **Standardized Containers**: Standardized `Card` architecture with soft shadows and squircle corners.
+- 🪄 **Micro-animations**: Smooth transitions powered by Framer Motion and Lucide React icons.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15 (App Router)](https://nextjs.org/)
+- **Logic**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Visualization**: [ApexCharts](https://apexcharts.com/)
+- **Forms**: [Unified Select/Autocomplete](components/ui/select.tsx)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or later
+- Bun, NPM, or PNPM
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/nextdash-template-v1.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   bun dev
+   # or
+   npm run dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📂 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/`: Next.js App Router directory (Dashboard, Settings, Components).
+- `components/ui/`: Core reusable UI component library.
+- `components/dashboard/`: Dashboard-specific layout and components.
+- `components/providers/`: Context providers (Theme, Sidebar, Toast).
+- `public/`: Static assets and images.
 
-## Learn More
+## 📜 License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️ by [Antigravity AI](https://github.com/antigravity)
