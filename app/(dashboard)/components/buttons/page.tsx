@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 
 import { useToast } from "@/components/providers/toast-provider";
+import { Card } from "@/components/ui/card";
 
 export default function ButtonsDemo() {
   const [loading, setLoading] = React.useState(false);
@@ -202,10 +203,105 @@ export default function ButtonsDemo() {
             <FAB
               position="bottom-left"
               icon={<Send className="w-6 h-6" />}
-              onClick={() => success("Message sent successfully!", "Direct Action")}
+              onClick={() =>
+                success("Message sent successfully!", "Direct Action")
+              }
               className="absolute left-8! bottom-8!"
             />
           </div>
+        </section>
+        <section className="space-y-6">
+          <h2 className="text-xl font-bold border-b pb-2">
+            FAB Positions & Smart Layouts
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="p-8 bg-accent/5 border-dashed relative min-h-[400px] overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="text-xs font-black uppercase tracking-widest opacity-20 -rotate-45">
+                  FAB Positions Playground
+                </span>
+              </div>
+
+              {/* Bottom Right - Actions Up, Labels Left */}
+              <FAB
+                position="bottom-right"
+                actions={[
+                  { icon: <Plus />, label: "Create New", onClick: () => {} },
+                  { icon: <FileText />, label: "New Draft", onClick: () => {} },
+                  { icon: <Download />, label: "Export Data", onClick: () => {} },
+                ]}
+                className="absolute! bottom-8! right-8!"
+              />
+
+              {/* Bottom Left - Actions Up, Labels Right */}
+              <FAB
+                position="bottom-left"
+                actions={[
+                  { icon: <Cloud />, label: "Sync Now", onClick: () => {} },
+                  { icon: <Share2 />, label: "Share Link", onClick: () => {} },
+                  { icon: <Bell />, label: "Notifications", onClick: () => {} },
+                ]}
+                className="absolute! bottom-8! left-8!"
+              />
+
+              {/* Bottom Center - Actions Up, Labels Centered */}
+              <FAB
+                position="bottom-center"
+                actions={[
+                  { icon: <Plus />, label: "Quick Add", onClick: () => {} },
+                  { icon: <Settings />, label: "Preferences", onClick: () => {} },
+                  { icon: <Plus />, label: "Favorites", onClick: () => {} },
+                ]}
+                className="absolute! bottom-8! left-1/2! -translate-x-1/2!"
+              />
+            </Card>
+
+            <Card className="p-8 bg-accent/5 border-dashed relative min-h-[400px] overflow-hidden">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <span className="text-xs font-black uppercase tracking-widest opacity-20 rotate-45">
+                  Top Positions
+                </span>
+              </div>
+
+              {/* Top Right - Actions Down, Labels Left */}
+              <FAB
+                position="top-right"
+                actions={[
+                  { icon: <Bell />, label: "Notify All", onClick: () => {} },
+                  { icon: <Plus />, label: "Invite User", onClick: () => {} },
+                  { icon: <Send />, label: "Direct Message", onClick: () => {} },
+                ]}
+                className="absolute! top-8! right-8!"
+              />
+
+              {/* Top Left - Actions Down, Labels Right */}
+              <FAB
+                position="top-left"
+                actions={[
+                  { icon: <Search />, label: "Global Search", onClick: () => {} },
+                  { icon: <Plus />, label: "New Project", onClick: () => {} },
+                  { icon: <FileText />, label: "Docs", onClick: () => {} },
+                ]}
+                className="absolute! top-8! left-8!"
+              />
+
+              {/* Top Center - Actions Down, Labels Centered */}
+              <FAB
+                position="top-center"
+                actions={[
+                  { icon: <Plus />, label: "Add Entry", onClick: () => {} },
+                  { icon: <Plus />, label: "Schedule", onClick: () => {} },
+                  { icon: <Plus />, label: "History", onClick: () => {} },
+                ]}
+                className="absolute! top-8! left-1/2! -translate-x-1/2!"
+              />
+            </Card>
+          </div>
+          <p className="text-xs text-muted-foreground mt-4">
+            Notice how labels and stack directions <b>automatically adjust</b>{" "}
+            to prevent clipping. When on the right, labels shift left. When at
+            the bottom, actions stack upward.
+          </p>
         </section>
       </PageContent>
     </PageLayout>

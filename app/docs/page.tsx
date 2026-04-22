@@ -90,6 +90,12 @@ import { FAB } from "@/components/ui/fab";
 import { Timeline } from "@/components/ui/timeline";
 import { Select } from "@/components/ui/select";
 import { Chart } from "@/components/ui/chart";
+import { 
+  Menu as DropdownMenu, 
+  MenuItem, 
+  MenuLabel, 
+  MenuSeparator 
+} from "@/components/ui/menu";
 
 import { useToast } from "@/components/providers/toast-provider";
 import { cn } from "@/components/ui/button";
@@ -411,12 +417,54 @@ export default function DocsPage() {
 
                   <div className="space-y-4">
                     <h3 className="text-sm font-black uppercase tracking-widest text-primary">
+                      Dropdown Menus
+                    </h3>
+                    <Card className="p-8 space-y-8 bg-accent/5 border-dashed">
+                      <div className="flex flex-wrap gap-4 items-center">
+                        <DropdownMenu
+                          trigger={<Button variant="outline">Options Menu</Button>}
+                          align="start"
+                        >
+                          <MenuLabel>User Actions</MenuLabel>
+                          <MenuItem icon={<User />} label="View Profile" rightElement="⌘P" />
+                          <MenuItem icon={<Settings />} label="Settings" rightElement="⌘S" />
+                          <MenuSeparator />
+                          <MenuLabel>Danger Zone</MenuLabel>
+                          <MenuItem icon={<Trash2 />} label="Delete Account" variant="destructive" />
+                        </DropdownMenu>
+
+                        <DropdownMenu
+                          trigger={<IconButton icon={<MoreHorizontal />} variant="ghost" />}
+                        >
+                          <MenuItem icon={<Copy />} label="Copy Link" />
+                          <MenuItem icon={<Plus />} label="Add to List" />
+                          <MenuSeparator />
+                          <MenuItem icon={<LogOut />} label="Sign Out" />
+                        </DropdownMenu>
+                      </div>
+                      <CodeBlock
+                        code={`// Dropdown Menu usage
+<DropdownMenu 
+  trigger={<Button>Options</Button>}
+  align="start"
+>
+  <MenuLabel>Title</MenuLabel>
+  <MenuItem icon={<User />} label="Profile" />
+  <MenuSeparator />
+  <MenuItem icon={<Trash />} label="Delete" variant="destructive" />
+</DropdownMenu>`}
+                      />
+                    </Card>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-black uppercase tracking-widest text-primary">
                       Breadcrumbs & Pagination
                     </h3>
                     <Card className="p-8 space-y-8 bg-accent/5 border-dashed">
                       <Breadcrumb
                         items={[
-                          { label: "Home", href: "/" },
+                          { label: "Home", href: "/", icon: <Home className="w-3 h-3" /> },
                           { label: "Settings", href: "/settings" },
                           { label: "Profile", active: true },
                         ]}
@@ -427,10 +475,10 @@ export default function DocsPage() {
                         onPageChange={() => {}}
                       />
                       <CodeBlock
-                        code={`// Breadcrumb
+                        code={`// Breadcrumb with icons
 <Breadcrumb 
   items={[
-    { label: "Home", href: "/" },
+    { label: "Home", href: "/", icon: <Home className="w-3 h-3" /> },
     { label: "Settings", href: "/settings" },
     { label: "Profile", active: true }
   ]} 

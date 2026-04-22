@@ -24,7 +24,7 @@ export function Popover({
   width = "w-64",
   className,
   triggerAction = "click",
-  useMobileOverlay = true,
+  useMobileOverlay = false,
 }: PopoverProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
@@ -118,7 +118,7 @@ export function Popover({
     };
 
     if (side === "top") {
-      styles.bottom = `${window.innerHeight - coords.top + 8}px`;
+      styles.bottom = `${window.innerHeight - coords.top + 6}px`;
       if (align === "center") {
         styles.left = `${coords.left + coords.width / 2}px`;
         styles.transform = "translateX(-50%)";
@@ -129,7 +129,7 @@ export function Popover({
         styles.transform = "translateX(-100%)";
       }
     } else if (side === "bottom") {
-      styles.top = `${coords.top + coords.height + 8}px`;
+      styles.top = `${coords.top + coords.height + 6}px`;
       if (align === "center") {
         styles.left = `${coords.left + coords.width / 2}px`;
         styles.transform = "translateX(-50%)";
@@ -140,7 +140,7 @@ export function Popover({
         styles.transform = "translateX(-100%)";
       }
     } else if (side === "left") {
-      styles.right = `${window.innerWidth - coords.left + 8}px`;
+      styles.right = `${window.innerWidth - coords.left + 6}px`;
       if (align === "center") {
         styles.top = `${coords.top + coords.height / 2}px`;
         styles.transform = "translateY(-50%)";
@@ -151,7 +151,7 @@ export function Popover({
         styles.transform = "translateY(-100%)";
       }
     } else if (side === "right") {
-      styles.left = `${coords.left + coords.width + 8}px`;
+      styles.left = `${coords.left + coords.width + 6}px`;
       if (align === "center") {
         styles.top = `${coords.top + coords.height / 2}px`;
         styles.transform = "translateY(-50%)";

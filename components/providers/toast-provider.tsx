@@ -4,23 +4,28 @@ import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from "lucide-react";
 import { cn } from "@/components/ui/button";
+import { useTheme } from "./theme-provider";
 
 type ToastType = "success" | "error" | "info" | "warning";
 
-interface Toast {
+interface Toast extends Omit<ToastOptions, "id"> {
   id: string;
+}
+
+interface ToastOptions {
   title?: string;
   message: string;
   type?: ToastType;
   duration?: number;
+  position?: ToastPosition;
 }
 
 interface ToastContextType {
-  toast: (options: Omit<Toast, "id">) => void;
-  success: (message: string, title?: string) => void;
-  error: (message: string, title?: string) => void;
-  info: (message: string, title?: string) => void;
-  warning: (message: string, title?: string) => void;
+  toast: (options: ToastOptions) => void;
+  success: (message: string, title?: string, position?: ToastPosition) => void;
+  error: (message: string, title?: string, position?: ToastPosition) => void;
+  info: (message: string, title?: string, position?: ToastPosition) => void;
+  warning: (message: string, title?: string, position?: ToastPosition) => void;
 }
 
 const ToastContext = React.createContext<ToastContextType | undefined>(
@@ -35,7 +40,7 @@ export function useToast() {
   return context;
 }
 
-type ToastPosition =
+export type ToastPosition =
   | "top-left"
   | "top-center"
   | "top-right"
@@ -45,48 +50,63 @@ type ToastPosition =
 
 interface ToastProviderProps {
   children: React.ReactNode;
-  position?: ToastPosition;
+  defaultPosition?: ToastPosition;
 }
 
 export function ToastProvider({
   children,
-  position = "bottom-right",
+  defaultPosition: propDefaultPosition,
 }: ToastProviderProps) {
+  const { toastPosition: contextPosition } = useTheme();
+  const defaultPosition = contextPosition || propDefaultPosition || "bottom-right";
   const [toasts, setToasts] = React.useState<Toast[]>([]);
-
-  const addToast = React.useCallback((options: Omit<Toast, "id">) => {
-    const id = Math.random().toString(36).substr(2, 9);
-    const newToast = { id, ...options };
-
-    setToasts((prev) => [...prev, newToast]);
-
-    if (options.duration !== 0) {
-      setTimeout(() => {
-        removeToast(id);
-      }, options.duration || 5000);
-    }
-  }, []);
 
   const removeToast = React.useCallback((id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
   }, []);
 
+  const addToast = React.useCallback(
+    (options: ToastOptions) => {
+      const id = Math.random().toString(36).substr(2, 9);
+      const position = options.position || defaultPosition;
+      const newToast = { id, ...options, position };
+
+      setToasts((prev) => [...prev, newToast]);
+
+      if (options.duration !== 0) {
+        setTimeout(() => {
+          removeToast(id);
+        }, options.duration || 5000);
+      }
+    },
+    [defaultPosition, removeToast],
+  );
+
   const toastHandlers = React.useMemo(
     () => ({
       toast: addToast,
-      success: (message: string, title?: string) =>
-        addToast({ message, title, type: "success" }),
-      error: (message: string, title?: string) =>
-        addToast({ message, title, type: "error" }),
-      info: (message: string, title?: string) =>
-        addToast({ message, title, type: "info" }),
-      warning: (message: string, title?: string) =>
-        addToast({ message, title, type: "warning" }),
+      success: (message: string, title?: string, position?: ToastPosition) =>
+        addToast({ message, title, type: "success", position }),
+      error: (message: string, title?: string, position?: ToastPosition) =>
+        addToast({ message, title, type: "error", position }),
+      info: (message: string, title?: string, position?: ToastPosition) =>
+        addToast({ message, title, type: "info", position }),
+      warning: (message: string, title?: string, position?: ToastPosition) =>
+        addToast({ message, title, type: "warning", position }),
     }),
     [addToast],
   );
 
-  const positionClasses = {
+  const positions: ToastPosition[] = [
+    "top-left",
+    "top-center",
+    "top-right",
+    "bottom-left",
+    "bottom-center",
+    "bottom-right",
+  ];
+
+  const positionClasses: Record<ToastPosition, string> = {
     "top-left": "top-6 left-6 items-start",
     "top-center": "top-6 left-1/2 -translate-x-1/2 items-center",
     "top-right": "top-6 right-6 items-end",
@@ -95,38 +115,49 @@ export function ToastProvider({
     "bottom-right": "bottom-6 right-6 items-end",
   };
 
-  const isTop = position.startsWith("top");
-
   return (
     <ToastContext.Provider value={toastHandlers}>
       {children}
 
-      {/* Toast Container */}
-      <div
-        className={cn(
-          "fixed z-200 flex flex-col gap-3 w-full max-w-sm pointer-events-none transition-all duration-500",
-          positionClasses[position],
-        )}
-      >
-        <AnimatePresence mode="popLayout">
-          {toasts.map((t) => (
-            <motion.div
-              key={t.id}
-              layout
-              initial={{ opacity: 0, y: isTop ? -50 : 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-              className="pointer-events-auto w-full"
-            >
-              <ToastItem
-                toast={t}
-                onRemove={() => removeToast(t.id)}
-                position={position}
-              />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </div>
+      {positions.map((pos) => {
+        const toastsInPosition = toasts.filter((t) => t.position === pos);
+        if (toastsInPosition.length === 0) return null;
+
+        const isTop = pos.startsWith("top");
+
+        return (
+          <div
+            key={pos}
+            className={cn(
+              "fixed z-9999 flex flex-col gap-3 w-full max-w-sm pointer-events-none transition-all duration-500",
+              positionClasses[pos],
+            )}
+          >
+            <AnimatePresence mode="popLayout">
+              {toastsInPosition.map((t) => (
+                <motion.div
+                  key={t.id}
+                  layout
+                  initial={{ opacity: 0, y: isTop ? -50 : 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="pointer-events-auto w-full px-4 sm:px-0"
+                >
+                  <ToastItem
+                    toast={t}
+                    onRemove={() => removeToast(t.id)}
+                    position={pos}
+                  />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        );
+      })}
     </ToastContext.Provider>
   );
 }

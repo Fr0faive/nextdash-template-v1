@@ -57,6 +57,49 @@ export default function OverlaysDemo() {
             </Button>
           </div>
         </section>
+
+        <section className="space-y-6">
+          <h2 className="text-xl font-bold border-b pb-2">Toast Positions</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <Button 
+              variant="outline"
+              onClick={() => info("Top Left Notification", "Position", "top-left")}
+            >
+              Top Left
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => info("Top Center Notification", "Position", "top-center")}
+            >
+              Top Center
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => info("Top Right Notification", "Position", "top-right")}
+            >
+              Top Right
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => info("Bottom Left Notification", "Position", "bottom-left")}
+            >
+              Bottom Left
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => info("Bottom Center Notification", "Position", "bottom-center")}
+            >
+              Bottom Center
+            </Button>
+            <Button 
+              variant="outline"
+              onClick={() => info("Bottom Right Notification", "Position", "bottom-right")}
+            >
+              Bottom Right
+            </Button>
+          </div>
+        </section>
+
         <section className="space-y-6">
           <h2 className="text-xl font-bold border-b pb-2">Modals</h2>
           <div className="flex flex-wrap gap-4">
