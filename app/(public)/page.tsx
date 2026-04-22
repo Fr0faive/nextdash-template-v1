@@ -12,8 +12,16 @@ export default function LandingPage() {
           <span className="font-bold text-xl tracking-tight">NextDash</span>
         </div>
         <div className="flex items-center gap-6">
-          <Link href="/login" className="text-sm font-bold hover:text-primary transition-colors">Login</Link>
-          <Link href="/login" className="px-6 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+          <Link
+            href="/login"
+            className="text-sm font-bold hover:text-primary transition-colors"
+          >
+            Login
+          </Link>
+          <Link
+            href="/login"
+            className="px-6 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-transform"
+          >
             Get Started
           </Link>
         </div>
@@ -29,29 +37,52 @@ export default function LandingPage() {
             v1.0 is now live
           </div>
           <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
-            The Ultimate <span className="text-primary">Dashboard</span> Template for Next.js
+            The Ultimate <span className="text-primary">Dashboard</span>{" "}
+            Template for Next.js
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Beautifully designed, highly customizable, and fully responsive. Build your next SaaS faster with NextDash's premium components.
+            Beautifully designed, highly customizable, and fully responsive.
+            Build your next SaaS faster with NextDash's premium components.
           </p>
           <div className="flex items-center justify-center gap-4 pt-4">
-            <Link href="/dashboard" className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-2">
+            <Link
+              href="/dashboard"
+              className="px-8 py-4 bg-primary text-primary-foreground rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-2"
+            >
               Explore Demo <ArrowRight className="w-5 h-5" />
             </Link>
-            <button className="px-8 py-4 bg-accent text-accent-foreground rounded-2xl font-bold text-lg hover:bg-accent/80 transition-all">
+            <Link
+              href="/docs"
+              className="px-8 py-4 bg-accent text-accent-foreground rounded-2xl font-bold text-lg hover:bg-accent/80 transition-all"
+            >
               Documentation
-            </button>
+            </Link>
           </div>
         </section>
 
         <section className="py-24 px-8 bg-accent/30 border-y">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
-              { icon: Shield, title: "Secure by Default", desc: "Enterprise-grade security patterns implemented across the board." },
-              { icon: Zap, title: "Ultra Fast", desc: "Built on Next.js 15 for maximum performance and SEO efficiency." },
-              { icon: Globe, title: "Global Scale", desc: "i18n ready and optimized for global content delivery." },
+              {
+                icon: Shield,
+                title: "Secure by Default",
+                desc: "Enterprise-grade security patterns implemented across the board.",
+              },
+              {
+                icon: Zap,
+                title: "Ultra Fast",
+                desc: "Built on Next.js 15 for maximum performance and SEO efficiency.",
+              },
+              {
+                icon: Globe,
+                title: "Global Scale",
+                desc: "i18n ready and optimized for global content delivery.",
+              },
             ].map((feature) => (
-              <div key={feature.title} className="space-y-4 text-center md:text-left">
+              <div
+                key={feature.title}
+                className="space-y-4 text-center md:text-left"
+              >
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mx-auto md:mx-0">
                   <feature.icon className="w-6 h-6" />
                 </div>
@@ -71,7 +102,9 @@ export default function LandingPage() {
             </div>
             <span className="font-bold text-lg tracking-tight">NextDash</span>
           </div>
-          <p className="text-sm text-muted-foreground">© 2026 NextDash Template. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">
+            © 2026 NextDash Template. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
