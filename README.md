@@ -2,7 +2,11 @@
 
 NextDash is a state-of-the-art, high-performance dashboard template built with **Next.js 15**, **React 19**, and **Tailwind CSS 4**. It features a stunning premium aesthetic with glassmorphism effects, dynamic theme-aware components, and a robust architecture designed for scale.
 
-![NextDash Preview](https://raw.githubusercontent.com/shadcn-ui/ui/main/apps/www/public/og.png) *(Replace with actual screenshot)*
+## 🖼️ Preview
+
+|                 Dashboard Overview                 |                       Landing Page                       |
+| :------------------------------------------------: | :------------------------------------------------------: |
+| ![Dashboard Preview](public/preview/dashboard.png) | ![Landing Page Preview](public/preview/landing-page.png) |
 
 ## ✨ Key Features
 
@@ -35,11 +39,13 @@ NextDash is a state-of-the-art, high-performance dashboard template built with *
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/yourusername/nextdash-template-v1.git
    ```
 
 2. Install dependencies:
+
    ```bash
    bun install
    # or
@@ -66,7 +72,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Built with ❤️ by [Antigravity AI](https://github.com/antigravity)
