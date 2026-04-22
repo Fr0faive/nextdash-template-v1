@@ -13,25 +13,44 @@ export default function DisclosureDemo() {
   const [activeTab, setActiveTab] = React.useState("account");
 
   const accordionItems = [
-    { id: "1", title: "What is NextDash?", content: "NextDash is a premium dashboard template built with Next.js and Tailwind CSS, focusing on rich aesthetics and modularity." },
-    { id: "2", title: "Is it responsive?", content: "Yes, every component is designed to be fully responsive across mobile, tablet, and desktop devices." },
-    { id: "3", title: "Can I customize the theme?", content: "Absolutely. You can change accent colors, switch between light and dark modes, and modify the global CSS variables easily." },
+    {
+      id: "1",
+      title: "What is NextDash?",
+      content:
+        "NextDash is a premium dashboard template built with Next.js and Tailwind CSS, focusing on rich aesthetics and modularity.",
+    },
+    {
+      id: "2",
+      title: "Is it responsive?",
+      content:
+        "Yes, every component is designed to be fully responsive across mobile, tablet, and desktop devices.",
+    },
+    {
+      id: "3",
+      title: "Can I customize the theme?",
+      content:
+        "Absolutely. You can change accent colors, switch between light and dark modes, and modify the global CSS variables easily.",
+    },
   ];
 
   const tabs = [
     { id: "account", label: "Account", icon: <User className="w-4 h-4" /> },
     { id: "security", label: "Security", icon: <Shield className="w-4 h-4" /> },
-    { id: "notifications", label: "Notifications", icon: <Bell className="w-4 h-4" /> },
+    {
+      id: "notifications",
+      label: "Notifications",
+      icon: <Bell className="w-4 h-4" />,
+    },
   ];
 
   return (
     <PageLayout>
-      <PageHeader 
+      <PageHeader
         title="Disclosure & Navigation"
         subtitle="Components for organizing content and providing additional information."
         breadcrumbs={[
           { label: "Components", href: "/components" },
-          { label: "Disclosure", active: true }
+          { label: "Disclosure", active: true },
         ]}
       />
 
@@ -40,12 +59,27 @@ export default function DisclosureDemo() {
           <h2 className="text-xl font-bold border-b pb-2">Tabs</h2>
           <div className="space-y-8">
             <div className="space-y-4">
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Underline Variant</h3>
-              <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} variant="underline" />
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+                Underline Variant
+              </h3>
+              <Tabs
+                tabs={tabs}
+                activeTab={activeTab}
+                onChange={setActiveTab}
+                variant="underline"
+              />
             </div>
             <div className="space-y-4">
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">Pills Variant</h3>
-              <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} variant="pills" className="max-w-md" />
+              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+                Pills Variant
+              </h3>
+              <Tabs
+                tabs={tabs}
+                activeTab={activeTab}
+                onChange={setActiveTab}
+                variant="pills"
+                className="max-w-md"
+              />
             </div>
           </div>
         </section>
@@ -59,40 +93,71 @@ export default function DisclosureDemo() {
 
         <section className="space-y-6">
           <h2 className="text-xl font-bold border-b pb-2">Popover Positions</h2>
-          <div className="flex flex-wrap gap-8 items-center justify-center p-12 bg-accent/10 rounded-4xl border border-dashed border-accent/30">
-            <Popover 
-              trigger={<Button variant="outline">Top Popover</Button>}
-              side="top"
-              align="center"
-            >
-              <div className="text-sm font-bold">I'm on top!</div>
-            </Popover>
+          
+          <div className="space-y-12">
+            {/* Top Variations */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Top Side</h3>
+              <div className="flex flex-wrap gap-4 items-center justify-center p-8 bg-accent/5 rounded-3xl border border-dashed border-accent/20">
+                <Popover side="top" align="start" trigger={<Button variant="outline">Top Start</Button>}>
+                  <div className="text-sm font-bold">Top Start Alignment</div>
+                </Popover>
+                <Popover side="top" align="center" trigger={<Button variant="outline">Top Center</Button>}>
+                  <div className="text-sm font-bold">Top Center Alignment</div>
+                </Popover>
+                <Popover side="top" align="end" trigger={<Button variant="outline">Top End</Button>}>
+                  <div className="text-sm font-bold">Top End Alignment</div>
+                </Popover>
+              </div>
+            </div>
 
-            <Popover 
-              trigger={<Button variant="outline">Left Popover</Button>}
-              side="left"
-              align="center"
-              width="w-48"
-            >
-              <div className="text-sm font-bold">Coming from the left!</div>
-            </Popover>
+            {/* Bottom Variations */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Bottom Side</h3>
+              <div className="flex flex-wrap gap-4 items-center justify-center p-8 bg-accent/5 rounded-3xl border border-dashed border-accent/20">
+                <Popover side="bottom" align="start" trigger={<Button variant="outline">Bottom Start</Button>}>
+                  <div className="text-sm font-bold">Bottom Start Alignment</div>
+                </Popover>
+                <Popover side="bottom" align="center" trigger={<Button variant="primary">Bottom Center</Button>}>
+                  <div className="text-sm font-bold">Bottom Center Alignment</div>
+                </Popover>
+                <Popover side="bottom" align="end" trigger={<Button variant="outline">Bottom End</Button>}>
+                  <div className="text-sm font-bold">Bottom End Alignment</div>
+                </Popover>
+              </div>
+            </div>
 
-            <Popover 
-              trigger={<Button variant="outline">Right Popover</Button>}
-              side="right"
-              align="center"
-              width="w-48"
-            >
-              <div className="text-sm font-bold">Hello from the right!</div>
-            </Popover>
+            {/* Left Variations */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Left Side</h3>
+              <div className="flex flex-wrap gap-4 items-center justify-center p-8 bg-accent/5 rounded-3xl border border-dashed border-accent/20">
+                <Popover side="left" align="start" trigger={<Button variant="outline">Left Start</Button>}>
+                  <div className="text-sm font-bold text-center">Left Start Alignment</div>
+                </Popover>
+                <Popover side="left" align="center" trigger={<Button variant="outline">Left Center</Button>}>
+                  <div className="text-sm font-bold text-center">Left Center Alignment</div>
+                </Popover>
+                <Popover side="left" align="end" trigger={<Button variant="outline">Left End</Button>}>
+                  <div className="text-sm font-bold text-center">Left End Alignment</div>
+                </Popover>
+              </div>
+            </div>
 
-            <Popover 
-              trigger={<Button variant="primary">Bottom (Default)</Button>}
-              side="bottom"
-              align="center"
-            >
-              <div className="text-sm font-bold">Standard bottom popover.</div>
-            </Popover>
+            {/* Right Variations */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Right Side</h3>
+              <div className="flex flex-wrap gap-4 items-center justify-center p-8 bg-accent/5 rounded-3xl border border-dashed border-accent/20">
+                <Popover side="right" align="start" trigger={<Button variant="outline">Right Start</Button>}>
+                  <div className="text-sm font-bold text-center">Right Start Alignment</div>
+                </Popover>
+                <Popover side="right" align="center" trigger={<Button variant="outline">Right Center</Button>}>
+                  <div className="text-sm font-bold text-center">Right Center Alignment</div>
+                </Popover>
+                <Popover side="right" align="end" trigger={<Button variant="outline">Right End</Button>}>
+                  <div className="text-sm font-bold text-center">Right End Alignment</div>
+                </Popover>
+              </div>
+            </div>
           </div>
         </section>
       </PageContent>
