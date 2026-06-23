@@ -90,6 +90,11 @@ import { FAB } from "@/components/ui/fab";
 import { Timeline } from "@/components/ui/timeline";
 import { Select } from "@/components/ui/select";
 import { Chart } from "@/components/ui/chart";
+import { Textarea } from "@/components/ui/textarea";
+import { MultiSelect } from "@/components/ui/multi-select";
+import { Rating } from "@/components/ui/rating";
+import { Slider } from "@/components/ui/slider";
+import { Stepper } from "@/components/ui/stepper";
 import { 
   Menu as DropdownMenu, 
   MenuItem, 
@@ -856,6 +861,35 @@ export default function DocsPage() {
 <Badge variant="dot" color="success">System Live</Badge>`}
                     />
                   </div>
+
+                  <div className="space-y-4 pt-8 border-t border-border/50">
+                    <h3 className="text-sm font-black uppercase tracking-widest text-primary">
+                      Stepper Navigation
+                    </h3>
+                    <Card className="p-8 bg-accent/5 border-dashed">
+                      <h4 className="text-xs font-bold text-muted-foreground mb-6 uppercase tracking-wider">Default (Horizontal)</h4>
+                      <Stepper
+                        currentStep={1}
+                        steps={[
+                          { label: "Account Setup", description: "Create credentials", icon: <User className="w-4 h-4" /> },
+                          { label: "Personal Info", description: "Your details", icon: <Settings className="w-4 h-4" /> },
+                          { label: "Payment", description: "Billing info", icon: <CreditCard className="w-4 h-4" /> },
+                          { label: "Review", description: "Final check", icon: <CheckCircle2 className="w-4 h-4" /> }
+                        ]}
+                      />
+                      <div className="mt-12">
+                        <Stepper
+                          currentStep={2}
+                          orientation="vertical"
+                          steps={[
+                            { label: "Step 1", description: "Initialize" },
+                            { label: "Step 2", description: "Process" },
+                            { label: "Step 3", description: "Complete" }
+                          ]}
+                        />
+                      </div>
+                    </Card>
+                  </div>
                 </div>
               </div>
             )}
@@ -903,6 +937,21 @@ export default function DocsPage() {
                           />
                           <Input label="Time" type="time" />
                         </div>
+                        <Textarea label="Biography" placeholder="Tell us a little bit about yourself..." />
+                        <MultiSelect
+                          label="Skills"
+                          placeholder="Select skills..."
+                          variant="chips"
+                          searchable
+                          options={[
+                            { label: "React", value: "react", group: "Frontend" },
+                            { label: "Next.js", value: "nextjs", group: "Frontend" },
+                            { label: "Node.js", value: "nodejs", group: "Backend" },
+                          ]}
+                          defaultValue={["react"]}
+                        />
+                        <Slider label="Brightness" defaultValue={75} showValue />
+                        <Rating label="Service Quality" defaultValue={4} />
                       </Card>
                       <CodeBlock
                         code={`// Input with icons
